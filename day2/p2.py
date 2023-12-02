@@ -3,13 +3,13 @@ def part2():
     lines = input.readlines()
     sum = 0
     # red, green, blue
-    for i, line in enumerate(lines):
+    for line in lines:
         red, green, blue = 0, 0, 0
         game = line[line.find(":") + 2 :]
-        cubes = game.split("; ")
-        for cube in cubes:
-            color = cube.split(", ")
-            for c in color:
+        rounds = game.split("; ")
+        for round in rounds:
+            cube = round.split(", ")
+            for c in cube:
                 number = int(c[: c.find(" ")])
                 if "red" in c and number:
                     red = max(red, number)
