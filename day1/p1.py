@@ -1,4 +1,4 @@
-def main():
+def part1():
     with open("input.txt", "r") as fp:
         lines = fp.readlines()
         sum = 0
@@ -17,5 +17,19 @@ def main():
         print(sum)
 
 
+def part1_alt():
+    with open("input.txt", "r") as fp:
+        ans = 0
+        lines = fp.readlines()
+        for line in lines:
+            digits = []
+            for i, c in enumerate(line):
+                if c.isdigit():
+                    digits.append(c)
+            score = int(digits[0] + digits[-1])
+            ans += score
+    print(ans)
+
+
 if __name__ == "__main__":
-    main()
+    part1()
