@@ -13,18 +13,19 @@ def parse(lines):
                     number
                 )
                 number = ""
-            if not char.isdigit() and char != "." and char != "\n":
+            if char == "*":
                 symbols.append((i, line_number))
 
     return (numbers, symbols)
 
 
-def part1():
+def part2():
     file = open("./input.txt")
     lines = file.readlines()
     sum = 0
     numbers, symbols = parse(lines)
     for symbol in symbols:
+        gear_numbers = []
         for number in numbers.keys():
             number_line = number[2]
             symbol_line_range = range(symbol[1] - 1, symbol[1] + 2)
@@ -35,11 +36,15 @@ def part1():
                 number_start_index in symbol_index_range
                 or number_end_index in symbol_index_range
             ):
-                sum += numbers[number]
+                gear_numbers.append(numbers[number])
+
+        if len(gear_numbers) == 2:
+            sum += gear_numbers[0] * gear_numbers[1]
+
     print(sum)
 
     file.close()
 
 
 if __name__ == "__main__":
-    part1()
+    part2()
